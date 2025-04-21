@@ -5,16 +5,15 @@ import { FaPlus, FaMinus, FaTrash, FaTimes, FaShoppingCart } from 'react-icons/f
 const Cart: React.FC = () => {
     const { cartItems, increment, decrement, removeFromCart, total } = useCart();
 
-    const [telefono, setTelefono] = useState('');
     const [direccion, setDireccion] = useState('');
 
     const handleWhatsAppOrder = () => {
-        const numeroWhatsApp = telefono; // Cambia por el número real del negocio
+        const numeroWhatsApp = '573232205900'; // Cambia por el número real del negocio
         const productos = cartItems
             .map(item => `• ${item.quantity}x ${item.name} - $${(item.price * item.quantity).toFixed(2)}`)
             .join('%0A');
 
-        const mensaje = `Hola! Deseo realizar el siguiente pedido:%0A%0A${productos}%0A%0ATotal: $${total.toFixed(2)}%0A%0ADirección de envío: ${direccion}%0ATeléfono del cliente: ${telefono}`;
+        const mensaje = `Hola! Deseo realizar el siguiente pedido:%0A%0A${productos}%0A%0ATotal: $${total.toFixed(2)}%0A%0ADirección de envío: ${direccion}`;
 
         const url = `https://wa.me/57${numeroWhatsApp}?text=${mensaje}`;
         window.open(url, '_blank');
@@ -111,20 +110,6 @@ const Cart: React.FC = () => {
                         </div>
 
                         {/* Input de Teléfono */}
-                        <div className="mb-4">
-                            <label htmlFor="telefono" className="block text-sm font-medium text-gray-700 mb-1">
-                                Número de teléfono
-                            </label>
-                            <input
-                                type="tel"
-                                id="telefono"
-                                name="telefono"
-                                value={telefono}
-                                onChange={e => setTelefono(e.target.value)}
-                                placeholder="Ej: 321 456 7890"
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
-                            />
-                        </div>
 
                         {/* Input de Dirección */}
                         <div className="mb-4">
@@ -143,11 +128,11 @@ const Cart: React.FC = () => {
                         </div>
 
                         <button
-                            disabled={cartItems.length === 0 || !telefono || !direccion}
+                            disabled={cartItems.length === 0 || !direccion}
                             onClick={handleWhatsAppOrder}
-                            className="w-full bg-[#E63946] text-white py-3 rounded-xl font-semibold text-lg hover:bg-green-700 transition disabled:opacity-50"
+                            className="w-full bg-green-600 text-white py-3 rounded-xl font-semibold text-lg hover:bg-green-700 transition disabled:opacity-50"
                         >
-                            Finalizar pedido
+                            Finalizar pedido por WhatsApp
                         </button>
                     </div>
 
