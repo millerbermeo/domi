@@ -8,7 +8,7 @@ const Cart: React.FC = () => {
     const [direccion, setDireccion] = useState('');
 
     const handleWhatsAppOrder = () => {
-        const numeroWhatsApp = '573232205900'; // Cambia por el número real del negocio
+        const numeroWhatsApp = '3232205900'; // Cambia por el número real del negocio
         const productos = cartItems
             .map(item => `• ${item.quantity}x ${item.name} - $${(item.price * item.quantity).toFixed(2)}`)
             .join('%0A');
