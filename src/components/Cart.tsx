@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
 import { FaPlus, FaMinus, FaTrash, FaTimes, FaShoppingCart } from 'react-icons/fa';
 
 const Cart: React.FC = () => {
     const { cartItems, increment, decrement, removeFromCart, total } = useCart();
+
+    const [telefono, setTelefono] = useState('');
+    const [direccion, setDireccion] = useState('');
+
+    const handleWhatsAppOrder = () => {
+        const numeroWhatsApp = telefono; // Cambia por el número real del negocio
+        const productos = cartItems
+            .map(item => `• ${item.quantity}x ${item.name} - $${(item.price * item.quantity).toFixed(2)}`)
+            .join('%0A');
+
+        const mensaje = `Hola! Deseo realizar el siguiente pedido:%0A%0A${productos}%0A%0ATotal: $${total.toFixed(2)}%0A%0ADirección de envío: ${direccion}%0ATeléfono del cliente: ${telefono}`;
+
+        const url = `https://wa.me/57${numeroWhatsApp}?text=${mensaje}`;
+        window.open(url, '_blank');
+    };
 
     return (
         <div className="drawer drawer-end z-50">
@@ -88,18 +103,55 @@ const Cart: React.FC = () => {
                     </div>
 
                     {/* Footer */}
+                    {/* Footer */}
                     <div className="mt-6 pt-4 border-t mb-10 lg:mb-0">
                         <div className="flex justify-between items-center mb-4">
                             <span className="text-xl font-bold">Total:</span>
                             <span className="text-2xl font-extrabold text-orange-600">${total.toFixed(2)}</span>
                         </div>
+
+                        {/* Input de Teléfono */}
+                        <div className="mb-4">
+                            <label htmlFor="telefono" className="block text-sm font-medium text-gray-700 mb-1">
+                                Número de teléfono
+                            </label>
+                            <input
+                                type="tel"
+                                id="telefono"
+                                name="telefono"
+                                value={telefono}
+                                onChange={e => setTelefono(e.target.value)}
+                                placeholder="Ej: 321 456 7890"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+                            />
+                        </div>
+
+                        {/* Input de Dirección */}
+                        <div className="mb-4">
+                            <label htmlFor="direccion" className="block text-sm font-medium text-gray-700 mb-1">
+                                Dirección de envío
+                            </label>
+                            <input
+                                type="text"
+                                id="direccion"
+                                name="direccion"
+                                value={direccion}
+                                onChange={e => setDireccion(e.target.value)}
+                                placeholder="Ej: Calle 123 #45-67"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+                            />
+                        </div>
+
                         <button
-                            disabled={cartItems.length === 0}
-                            className="w-full bg-orange-600 text-white py-3 rounded-xl font-semibold text-lg hover:bg-orange-700 transition disabled:opacity-50"
+                            disabled={cartItems.length === 0 || !telefono || !direccion}
+                            onClick={handleWhatsAppOrder}
+                            className="w-full bg-[#E63946] text-white py-3 rounded-xl font-semibold text-lg hover:bg-green-700 transition disabled:opacity-50"
                         >
                             Finalizar pedido
                         </button>
                     </div>
+
+
                 </div>
             </div>
         </div>
