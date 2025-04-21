@@ -6,6 +6,8 @@ import MenuList from '../../components/MenuList';
 const Restaurante: React.FC = () => {
     const { id } = useParams<{ id: string }>();
 
+    console.log(id)
+
     return (
         <CartProvider>
             <div className="w-full h-full">
