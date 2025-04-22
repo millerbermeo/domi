@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const Navbar: React.FC = () => {
     const [scrolling, setScrolling] = useState(false);
+    const navigate = useNavigate();
 
     // Detectar el desplazamiento del scroll
     useEffect(() => {
@@ -52,7 +54,11 @@ export const Navbar: React.FC = () => {
                     </svg>
                 </button>
                 {/* Icono de perfil o usuario */}
-                <button className="btn btn-square btn-ghost ml-4">
+                <button className="btn btn-square btn-ghost ml-4"
+
+                    onClick={() => navigate(`/login`)}
+                >
+
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
