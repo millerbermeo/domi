@@ -9,7 +9,7 @@ const Login: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col justify-center md:flex-row">
       {/* Form Container */}
-      <div className="w-full md:w-1/2 bg-white flex flex-col justify-center items-center px-6 py-12">
+      <div className="w-full md:w-1/2 bg-white flex flex-col justify-center items-center px-6 py-6 lg:py-12">
         <AnimatePresence mode="wait">
           {isRegistering ? (
             <motion.div
