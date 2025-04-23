@@ -13,7 +13,7 @@ const Cart: React.FC = () => {
             .map(item => `• ${item.quantity}x ${item.name} - $${(item.price * item.quantity).toFixed(2)}`)
             .join('%0A');
 
-        const mensaje = `Hola! Deseo realizar el siguiente pedido:%0A%0A${productos}%0A%0ATotal: $${total.toFixed(2)}%0A%0ADirección de envío: ${direccion}`;
+        const mensaje = `¡Hola! 👋 Me gustaría hacer un pedido con los siguientes productos:%0A%0A${productos}%0A%0A🔸 Total: $${total.toFixed(2)}%0A📍 Dirección de envío: ${direccion}%0A%0A¿Me puedes confirmar si todo está bien? ¡Gracias! 🙌`;
 
         const url = `https://wa.me/57${numeroWhatsApp}?text=${mensaje}`;
         window.open(url, '_blank');

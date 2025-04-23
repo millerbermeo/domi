@@ -10,6 +10,7 @@ import CartaMenu from './CartaMenu';
 import { menuData } from '../utils/array-items';
 import InstagramButton from './InstagramButton';
 import FacebookButton from './FacebookButton';
+import CategoryCarousel from './CategoryCarousel';
 
 
 const MenuList: React.FC = () => {
@@ -39,7 +40,7 @@ const MenuList: React.FC = () => {
         });
 
     return (
-        <div className="w-full min-h-screen flex flex-col relative bg-white">
+        <div className="w-full min-h-screen flex flex-col relative bg-white overflow-hidden">
             {/* Contenedor principal */}
             <div className="flex flex-col md:flex-row w-full h-full">
 
@@ -74,6 +75,7 @@ const MenuList: React.FC = () => {
 
                     {/* Header fijo */}
                     <div className="w-full sticky top-0 z-10 bg-[#E63946] px-4 py-3">
+
                         <div className="flex items-center justify-between gap-4 flex-wrap md:flex-nowrap">
 
                             {/* Logo + Nombre */}
@@ -92,6 +94,7 @@ const MenuList: React.FC = () => {
                                 </h2>
                             </div>
 
+
                             {/* Botones alineados horizontalmente con scroll si no caben */}
                             <div className="flex-1 overflow-x-auto md:overflow-visible">
                                 <div className="flex items-center gap-2 justify-end min-w-max">
@@ -100,7 +103,7 @@ const MenuList: React.FC = () => {
                                         <WhatsappButton phoneNumber='32321122112' message='Hola, quiero hacer un pedido' />
                                         <CartaMenu />
                                     </div>
-                                    <div>
+                                    <div className='fixed bottom-10 right-10'>
                                         <Cart />
                                     </div>
                                 </div>
@@ -112,7 +115,11 @@ const MenuList: React.FC = () => {
 
 
                     {/* Contenido con padding para evitar que quede detrás del header */}
-                    <div className="w-full mt-[20px] px-4">
+                    <div className="w-full mt-[20px] px-4 overflow-hidden">
+                        <div className='overflow-hidden'>
+                            <CategoryCarousel />
+                        </div>
+
                         <MenuFilters categories={categories} onFilterChange={setFilters} />
                         <div className="pt-6 flex flex-wrap gap-5">
                             {filteredMenu.map((item, index) => (

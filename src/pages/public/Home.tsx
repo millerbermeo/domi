@@ -4,6 +4,7 @@ import AnimationMoto from '../../components/AnimationMoto';
 import LocalesMenu from '../../components/LocalesMenu';
 // import CardCategorias from '../../components/CardCategorias';
 import TabsCategorias from '../../components/TabsCategorias';
+import CategoryCarousel from '../../components/CategoryCarousel';
 
 const Home: React.FC = () => {
 

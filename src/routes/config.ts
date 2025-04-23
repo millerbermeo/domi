@@ -31,5 +31,12 @@ export const routesConfig = [
         element: lazy(() => import('../pages/public/Restaurante')),
         requiresAuth: false,
         useLayout: false,
-      },
+    },
+
+    {
+        path: '/producto',
+        element: lazy(() => import('../pages/public/ProductPage')),
+        requiresAuth: false,
+        useLayout: false,
+    },
 ];
